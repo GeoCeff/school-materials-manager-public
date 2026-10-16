@@ -11,9 +11,13 @@ These checks apply to the public source snapshot. They do not require completing
 - [x] Review the exact public files for secrets, private paths, school content and unrelated material. Keep runtime data, OAuth configuration and local reports out of Git.
 - [x] Build and run tests from the public snapshot using its lockfile; record the actual results below.
 - [x] Check documentation links, setup instructions and experimental-feature disclosures.
-- [ ] Review the final Git tree, publish to the intended public repository and verify its remote commit.
+- [x] Review the final Git tree, publish to the intended public repository and verify its remote commit.
+
+Published to [GeoCeff/school-materials-manager-public](https://github.com/GeoCeff/school-materials-manager-public). The initial 102-file source snapshot is commit `b9665f86d85a80333c160b6ebadd62b2f0ccb570`; its remote commit, public visibility and MIT license detection were verified. Promotional media, private history, runtime data and publisher OAuth configuration are excluded.
 
 Fresh public-snapshot validation on the Windows 11 x64 development host: **npm ci succeeded, 108/108 automated tests passed with zero skips, and all seven UI suites passed**. The fresh install reported zero dependency advisories. This validates the reviewed source on that host; it does not certify a clean Windows device or downloadable binary.
+
+The packaging tooling also passed a local license/integrity check: the app's MIT license is retained inside ASAR and as `LICENSE.archive-search.txt`, Electron's own `LICENSE` is preserved, and no OAuth client is bundled. No binary from that check is published.
 
 Earlier rc4 development checks additionally exercised collection/source-switch review, byte and storage thresholds, failed writes, stale reviews, Saved races, PDF limits and finite resource cycles. Those remain scoped historical development results.
 
