@@ -1,0 +1,11 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import '@fontsource/geist/latin-400.css';
+import '@fontsource/geist/latin-500.css';
+import '@fontsource/geist/latin-600.css';
+import '@fontsource/geist-mono/latin-400.css';
+import { App } from './App.js';
+import './app.css';
+const theme = window.archive?.initialTheme ?? 'system';
+document.documentElement.dataset.theme = theme === 'system' ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : theme;
+createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

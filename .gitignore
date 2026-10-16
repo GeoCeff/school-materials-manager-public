@@ -1,0 +1,13 @@
+node_modules/
+dist/
+out/
+*.sqlite
+*.sqlite-*
+*.log
+output/
+.playwright-cli/
+.playwright/
+connections*.bin
+client_secret*.json
+google-client*.json
+uvec-token*.json

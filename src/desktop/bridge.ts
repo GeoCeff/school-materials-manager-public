@@ -1,0 +1,36 @@
+import type { SearchPage, SearchResult, Preview } from '../core/library.js';
+import type { BrowsePage, BrowseRequest, Filters, Job, SavedItem, Status, Theme } from '../core/model.js';
+import type { CollectionAPI } from '../core/collection-model.js';
+import type { ClearChoices, ClearReview, ClearResult } from '../core/local-data.js';
+export interface ArchiveAPI {
+  collection: CollectionAPI;
+  clearReview(choices: ClearChoices): Promise<ClearReview>;
+  clearExecute(id: string, copies: string[]): Promise<ClearResult | null>;
+  clearCancel(): Promise<void>;
+  demo: boolean;
+  initialTheme: Theme;
+  status(): Promise<Status>;
+  choose(): Promise<string | null>;
+  start(kind: Job['kind']): Promise<Job>;
+  cancel(): Promise<void>;
+  search(query: string, filters: Filters, offset: number): Promise<SearchPage>;
+  browse(request: BrowseRequest): Promise<BrowsePage>;
+  options(filters: Filters): Promise<Status['options']>;
+  preview(fileId: string, passageId: number): Promise<Preview>;
+  matches(fileId: string, query: string): Promise<SearchResult[]>;
+  open(fileId: string): Promise<void>;
+  reveal(fileId: string): Promise<void>;
+  revealEntry(root: string, relativePath: string): Promise<void>;
+  theme(value: Theme): Promise<void>;
+  appearance(value: Theme): Promise<void>;
+  ocr(enabled: boolean): Promise<void>;
+  document(fileId: string, page: number): Promise<{ image: string; page: number; pages: number; width: number; height: number }>;
+  cancelDocument(): Promise<void>;
+  saved(): Promise<SavedItem[]>;
+  saveSearch(query: string, filters: Filters): Promise<SavedItem[]>;
+  saveBookmark(fileId: string, passageId: number): Promise<SavedItem[]>;
+  removeSaved(id: string): Promise<SavedItem[]>;
+  openBookmark(id: string): Promise<Preview>;
+  progress(listener: (job: Job) => void): () => void;
+  failure(listener: () => void): () => void;
+}
